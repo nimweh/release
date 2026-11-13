@@ -14,303 +14,426 @@
 :root{--bg:#F6F3EE;--card:#fff;--ink:#2B2A27;--mut:#7C7669;--line:#E4DED3;--acc:#2F6B5E;--accw:#E7F0ED}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
-body{background:var(--bg);color:var(--ink);font:400 17px/1.65 -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC","Hiragino Sans GB",sans-serif;display:flex;justify-content:center;min-height:100vh}
-#app{width:100%;max-width:480px;padding:calc(20px + env(safe-area-inset-top)) 22px calc(28px + env(safe-area-inset-bottom));display:flex;flex-direction:column;min-height:100vh}
-.top{display:flex;align-items:center;gap:12px;margin-bottom:26px;min-height:24px}
-.back{background:none;border:0;color:var(--mut);font:inherit;font-size:15px;padding:2px 0;flex:0 0 auto}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.7 -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC","Hiragino Sans GB",sans-serif;display:flex;justify-content:center;min-height:100vh}
+#wrap{width:100%;max-width:520px;padding:calc(22px + env(safe-area-inset-top)) 20px calc(30px + env(safe-area-inset-bottom));min-height:100vh;display:flex;flex-direction:column}
+h1{font-size:27px;font-weight:500;margin:0 0 8px;letter-spacing:.5px}
+.sub{color:var(--mut);font-size:15px;margin:0 0 20px;line-height:1.7}
+.top{display:flex;align-items:center;gap:12px;margin-bottom:18px;min-height:22px}
+.back{background:none;border:0;color:var(--mut);font:inherit;font-size:15px;padding:2px 0}
 .bar{height:2px;background:var(--line);flex:1;border-radius:2px;overflow:hidden}
 .bar i{display:block;height:100%;background:var(--acc);width:0;transition:width .35s ease}
-h1{font-size:27px;font-weight:500;margin:0 0 10px;letter-spacing:.5px}
-p{margin:0 0 16px}
-.lead{font-size:20px;line-height:1.6}
-.sub{color:var(--mut);font-size:15px;line-height:1.7}
-.ctx{font-size:14px;color:var(--mut);border-left:2px solid var(--line);padding:2px 0 2px 12px;margin:0 0 22px;word-break:break-word}
-.q{font-size:21px;line-height:1.55;margin:0 0 20px}
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 24px}
-.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:11px 17px;font:inherit;font-size:16px;color:var(--ink)}
-.chip.on{border-color:var(--acc);background:var(--accw);color:#1E4E44}
-.spacer{flex:1;min-height:12px}
+.stage{font-size:12.5px;color:var(--acc);letter-spacing:.6px;margin:0 0 10px}
+.ctx{font-size:14px;color:var(--mut);border-left:2px solid var(--line);padding:2px 0 2px 12px;margin:0 0 18px;word-break:break-word}
+.lead{font-size:19px;line-height:1.65;margin:0 0 14px}
+.q{font-size:20px;line-height:1.6;margin:0 0 18px}
+.note{font-size:13.5px;color:var(--mut);line-height:1.65;margin:0 0 14px}
+.spacer{flex:1;min-height:10px}
 button.big{width:100%;border:0;border-radius:14px;background:var(--acc);color:#fff;font:inherit;font-size:17px;padding:16px;margin-top:10px}
-button.big:disabled{opacity:.3}
-button.ghost{width:100%;border:1px solid var(--line);border-radius:14px;background:transparent;color:var(--ink);font:inherit;font-size:16px;padding:14px;margin-top:10px}
-button.row{width:100%;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);font:inherit;font-size:17px;padding:15px;margin-top:10px;text-align:left}
+button.big:disabled{opacity:.32}
+button.row{width:100%;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);font:inherit;font-size:16.5px;padding:15px;margin-top:10px;text-align:left}
 button.row b{font-weight:500}
-textarea{border:1px solid var(--line);border-radius:12px;padding:14px;font:inherit;color:var(--ink);background:var(--card);resize:none;width:100%}
-textarea:focus{outline:2px solid var(--accw);border-color:var(--acc)}
-.hint{font-size:13px;color:var(--mut);margin:10px 0 0;line-height:1.6}
-.gain{border-bottom:1px solid var(--line);padding:16px 0}
-.gain .d{font-size:13px;color:var(--mut);margin-bottom:4px}
-.gain .t{font-size:15px;margin-bottom:4px}
-.gain .n{font-size:16px}
-pre{white-space:pre-wrap;word-break:break-word;font:400 14px/1.75 inherit;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:0 0 16px;max-height:52vh;overflow:auto}
-#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(28px + env(safe-area-inset-bottom));background:#2B2A27;color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;opacity:0;transition:opacity .25s;pointer-events:none;max-width:80vw;text-align:center}
+button.row span{display:block;font-size:13.5px;color:var(--mut);margin-top:2px}
+button.ghost{width:100%;border:1px solid var(--line);border-radius:14px;background:transparent;color:var(--ink);font:inherit;font-size:16px;padding:14px;margin-top:10px}
+button.mini{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:9px 14px;font:inherit;font-size:14px;color:var(--ink)}
+input,textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:14px;font:inherit;color:var(--ink);background:var(--card);resize:none}
+input:focus,textarea:focus{outline:2px solid var(--accw);border-color:var(--acc)}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 18px}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:10px 16px;font:inherit;font-size:16px;color:var(--ink)}
+.chip.on{border-color:var(--acc);background:var(--accw);color:#1E4E44}
+.flist{margin:0 0 16px}
+.fitem{display:flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px 14px;margin:0 0 8px;font-size:16px}
+.fitem i{flex:1;font-style:normal}
+.fitem b{font-weight:400;color:var(--mut);font-size:18px;padding:0 4px}
+.fitem .tag{font-size:12px;color:#1E4E44;background:var(--accw);border-radius:6px;padding:2px 8px}
+.done{opacity:.55}
+.tbl{width:100%;border-collapse:collapse;font-size:14.5px;margin:0 0 18px}
+.tbl th,.tbl td{border-bottom:1px solid var(--line);padding:10px 6px;text-align:left;vertical-align:top}
+.tbl th{font-weight:500;color:var(--mut);font-size:13px}
+.logitem{border-bottom:1px solid var(--line);padding:14px 0}
+.logitem .d{font-size:12.5px;color:var(--mut);margin-bottom:4px}
+.logitem .t{font-size:15px;margin-bottom:4px}
+.logitem .n{font-size:15.5px}
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(26px + env(safe-area-inset-bottom));background:#2B2A27;color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;opacity:0;transition:opacity .25s;pointer-events:none;max-width:80vw;text-align:center}
 #toast.on{opacity:1}
-.tag{display:inline-block;font-size:12px;color:#1E4E44;background:var(--accw);border-radius:6px;padding:2px 8px}
 </style>
 </head>
 <body>
-<div id="app"></div>
+<div id="wrap"></div>
 <div id="toast"></div>
 <script>
-var K='release_gains_v1';
-var S={topic:'',feel:'',feels:[],round:0,stuck:false,saved:false};
-var stack=[];
+var CATS=["冷漠", "悲伤", "恐惧", "贪求", "愤怒", "骄傲", "勇气", "接纳", "平静"];
+var WANTS=[["想要被认可", "想让谁觉得你好、怕他觉得你不好"], ["想要控制", "想把结果抓住、想让它按你的来"], ["想要安全", "怕失去什么、怕自己不安全"]];
+var K='release_sessions_v2';
 
-function store(){try{return JSON.parse(localStorage.getItem(K)||'[]')}catch(e){return[]}}
-function persist(a){try{localStorage.setItem(K,JSON.stringify(a))}catch(e){}}
-function toast(m){var t=document.getElementById('toast');t.textContent=m;t.className='on';clearTimeout(window._tt);window._tt=setTimeout(function(){t.className=''},1700)}
+var S={topic:'',feelings:[],i:0,rounds:0,phase:'',note:'',stack:[]};
+var W=document.getElementById('wrap');
 
-var PROG={welcome:0,topic:12,locate:24,pick:28,allow:36,q1:46,q2:56,q3:66,q4:74,check:84,stuck:64,deepen:90,deepq:94,gain:100,saved:100};
-
-function shell(html,opt){
-  opt=opt||{};
-  var back=opt.back===false?'':'<button class="back" onclick="goBack()">返回</button>';
-  var p=PROG[opt.name];
-  var bar=p===undefined?'':'<div class="bar"><i style="width:'+p+'%"></i></div>';
-  document.getElementById('app').innerHTML='<div class="top">'+back+bar+'</div>'+html;
-  window.scrollTo(0,0);
-}
-
-var V={};
-
-V.welcome=function(){
-  shell('<h1>释放</h1><p class="sub">一次一件事。<br>大约六分钟。</p><div class="spacer"></div>'+
-  '<button class="big" onclick="reset();show(\'topic\')">开始</button>'+
-  '<button class="ghost" onclick="show(\'gains\')">收益簿</button>'+
-  '<button class="ghost" onclick="show(\'prompt\')">复制的版本（给 AI 用）</button>',{name:'welcome',back:false});
-};
-
-V.topic=function(){
-  shell('<p class="q">现在想放下的是什么？</p>'+
-  '<p class="sub">一句话就够。一件具体的事、一个人、一个场面——不用交代背景。</p>'+
-  '<textarea id="ti" rows="3" placeholder="例：请学生来帮忙，他们反应很淡"></textarea>'+
-  '<button class="big" onclick="setTopic()">下一步</button>',{name:'topic'});
-  var t=document.getElementById('ti');t.value=S.topic||'';
-};
-
-V.locate=function(){
-  var ctx=S.topic?'<div class="ctx">'+esc(S.topic)+'</div>':'';
-  shell(ctx+'<p class="lead">把那个场面在心里过一遍——<br>就像它正在发生。</p>'+
-  '<p class="sub">你说了哪句话，谁没反应，那几秒的安静。</p><div class="spacer"></div>'+
-  '<p class="q">此刻心里是什么感觉？</p>'+
-  chips(['冷漠','悲伤','恐惧','贪求','愤怒','骄傲','勇气','接纳','平静','说不上来'])+
-  '<button class="big" id="nx" onclick="feelingNext()">就是它</button>',{name:'locate'});
-  refresh();
-};
-
-V.pick=function(){
-  shell('<p class="q">现在哪一个更响？</p><div class="spacer"></div>'+
-  S.feels.map(function(f){return '<button class="row" onclick="pickOne(\''+f+'\')"><b>'+f+'</b></button>'}).join(''),{name:'pick'});
-};
-
-V.allow=function(){
-  var f=S.feel;
-  var body=(f==='说不上来');
-  if(body){
-    shell('<p class="lead">没关系，不用给它名字。<br>身体上有没有一个地方是紧的？</p>'+
-    '<p class="sub">胸口、胃、喉咙、肩膀。把注意力放那儿。</p><div class="spacer"></div>'+
-    '<button class="big" onclick="S.feel=\'身体里的紧\';show(\'allow\')">能感觉到</button>',{name:'allow'});
-    return;
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.className='on';clearTimeout(window._tt);window._tt=setTimeout(function(){t.className=''},1900)}
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function nl(s){return esc(s).replace(/\n/g,'<br>')}
+function store(){
+  var a=[];
+  try{a=JSON.parse(localStorage.getItem(K)||'[]')}catch(e){a=[]}
+  if(!a.length){
+    try{
+      var old=JSON.parse(localStorage.getItem('release_gains_v1')||'[]');
+      if(old&&old.length){
+        a=old.map(function(x){return {d:x.d,topic:x.t,note:x.n,rows:x.f?[{t:x.f,cat:'',want:''}]:[]}});
+        try{localStorage.setItem(K,JSON.stringify(a))}catch(e){}
+      }
+    }catch(e){}
   }
-  shell('<div class="ctx">现在是：'+f+'</div>'+
-  '<p class="lead">好。让它就在那儿。<br>不赶它走，也别压回去。</p>'+
-  '<p class="sub">不用做任何事，也不用想它从哪来。</p><div class="spacer"></div>'+
-  '<button class="big" onclick="show(\'q1\')">能感觉到它在</button>'+
-  '<button class="ghost" onclick="toast(\'没关系，就让它在那儿待一会儿\');show(\'q1\')">有点难</button>',{name:'allow'});
-};
-
-V.q1=function(){
-  var lead=S.round>0?'剩下的那部分，':'';
-  shell(leadQ(lead)+'<p class="q">你能允许它就在那儿吗？</p><div class="spacer"></div>'+
-  '<button class="big" onclick="show(\'q2\')">能</button>'+
-  '<button class="ghost" onclick="toast(\'答案不重要，往下走\');show(\'q2\')">不能</button>',{name:'q1'});
-};
-function leadQ(lead){return lead?'<div class="ctx">'+lead+'</div>':''}
-
-V.q2=function(){
-  shell(leadQ(S.round>0?'剩下的那部分':'')+'<p class="q">你能放下它吗？</p><div class="spacer"></div>'+
-  '<button class="big" onclick="show(\'q3\')">能</button>'+
-  '<button class="row" onclick="toast(\'可以，照样往下\');show(\'q3\')"><b>还不能</b></button>'+
-  '<button class="row" onclick="toast(\'不用想清楚\');show(\'q3\')"><b>说不清</b></button>',{name:'q2'});
-};
-
-V.q3=function(){
-  shell('<p class="q">你愿意放下它吗？</p><div class="spacer"></div>'+
-  '<button class="big" onclick="show(\'q4\')">愿意</button>'+
-  '<button class="row" onclick="toast(\'可以\');show(\'q4\')"><b>不愿意</b></button>'+
-  '<button class="row" onclick="toast(\'可以\');show(\'q4\')"><b>说不上</b></button>',{name:'q3'});
-};
-
-V.q4=function(){
-  shell('<p class="q">什么时候？</p><div class="spacer"></div>'+
-  '<button class="big" onclick="show(\'check\')">现在</button>'+
-  '<button class="row" onclick="show(\'check\')"><b>等一下</b></button>'+
-  '<button class="row" onclick="show(\'check\')"><b>不知道</b></button>',{name:'q4'});
-};
-
-V.check=function(){
-  S.round++;
-  shell((S.topic?'<div class="ctx">'+esc(S.topic)+'</div>':'')+
-  '<p class="lead">再回到那个场面。</p>'+
-  '<p class="sub">就像它正在发生。</p><div class="spacer"></div>'+
-  '<p class="q">还剩多少？</p>'+
-  '<button class="big" onclick="show(\'gain\')">没了</button>'+
-  '<button class="row" onclick="still()"><b>还有一点</b></button>'+
-  '<button class="row" onclick="still()"><b>还在</b></button>',{name:'check'});
-};
-
-V.stuck=function(){
-  shell('<p class="sub">放不掉很正常，几十年的东西不用一次解决。</p>'+
-  '<p class="q">现在，你能放下「想要控制这个卡住」吗？</p><div class="spacer"></div>'+
-  '<button class="big" onclick="S.stuck=true;show(\'q2\')">能</button>'+
-  '<button class="ghost" onclick="S.stuck=true;show(\'gain\')">还是不行</button>',{name:'stuck'});
-};
-
-V.deepen=function(){
-  shell('<p class="sub">这一层底下，通常是一个「想要」。<br>不是不该有，是「一直在想要」把你想要的东西推远了。</p><div class="spacer"></div>'+
-  '<p class="q">哪一个更像？</p>'+
-  '<button class="row" onclick="deep(\'想让谁觉得你好\')"><b>想让谁觉得你好</b><br><span class="sub">想要被认可</span></button>'+
-  '<button class="row" onclick="deep(\'想把结果抓住\')"><b>想把结果抓住</b><br><span class="sub">想要控制</span></button>'+
-  '<button class="row" onclick="deep(\'怕失去什么\')"><b>怕失去什么</b><br><span class="sub">想要安全</span></button>',{name:'deepen'});
-};
-
-V.deepq=function(){
-  shell('<div class="ctx">现在是：'+S.deep+'</div>'+
-  '<p class="q">你能放下这个「想要」吗？</p>'+
-  '<p class="sub">认出来的那一瞬间，它常常自己就走了。</p><div class="spacer"></div>'+
-  '<button class="big" onclick="deepDone()">能</button>'+
-  '<button class="ghost" onclick="deepDone()">还不能</button>',{name:'deepq'});
-};
-
-V.gain=function(){
-  shell((S.topic?'<div class="ctx">'+esc(S.topic)+'</div>':'')+
-  '<p class="lead">再想那件事。<br>什么感觉？</p>'+
-  '<p class="sub">记一句：原来什么样，现在什么样。多小都算。</p>'+
-  '<textarea id="gi" rows="3" placeholder="原来一想到就挂不住，现在想起来没什么了"></textarea>'+
-  '<button class="big" onclick="saveGain()">记下</button>'+
-  '<button class="ghost" onclick="show(\'welcome\')">不记，结束</button>',{name:'gain'});
-};
-
-V.saved=function(){
-  shell('<h1>记下了</h1><p class="sub">一次使用，就松一点。</p><div class="spacer"></div>'+
-  '<button class="big" onclick="show(\'deepen\')">再看一层（三欲）</button>'+
-  '<button class="ghost" onclick="reset();show(\'topic\')">换一件事</button>'+
-  '<button class="ghost" onclick="show(\'welcome\')">结束</button>',{name:'saved'});
-};
-
-V.gains=function(){
-  var a=store(),body;
-  if(!a.length){body='<p class="sub">还没有记录。每次释放完记一句，慢慢就能看出变化。</p>'}
-  else{
-    body=a.slice().reverse().map(function(x){
-      return '<div class="gain"><div class="d">'+esc(x.d)+(x.f?' · <span class="tag">'+esc(x.f)+'</span>':'')+'</div>'+
-      (x.t?'<div class="t">'+esc(x.t)+'</div>':'')+
-      '<div class="n">'+esc(x.n)+'</div></div>';
-    }).join('');
-  }
-  shell('<h1>收益簿</h1>'+body+'<div class="spacer"></div>'+
-  (a.length?'<button class="ghost" onclick="clearAll()">清空全部</button>':'')+
-  '<button class="ghost" onclick="show(\'welcome\')">回到首页</button>',{name:'gains',back:false});
-};
-
-V.prompt=function(){
-  shell('<h1>给 AI 的版本</h1><p class="sub">复制下面这段，粘到任何 AI 对话框里，它就会按同一套流程带你走。</p>'+
-  '<pre id="pt">'+esc(PROMPT)+'</pre>'+
-  '<button class="big" onclick="copyPrompt()">复制</button>'+
-  '<button class="ghost" onclick="show(\'welcome\')">回到首页</button>',{name:'prompt',back:false});
-};
-
-var PROMPT=['你是我的释放引导者，用圣多纳释放法（1992 原始课程）带我放掉一件事。','',
-'规则：一次只问一个问题；不问「为什么」；不分析、不归因、不安慰、不给建议；不要等身体感觉（释放常常极细微）；答案不重要，答「不能」也是合格答案；短句，中文口语，每句话要能让人「感觉一下」而不是「思考一下」。','',
-'流程：',
-'1. 问我：现在想放下什么？要一个具体场面（哪句话、谁、那几秒）。',
-'2. 让我把那个场面在心里过一遍，问：此刻心里什么感觉？把我的感受归到九类之一：冷漠／悲伤／恐惧／贪求／愤怒／骄傲，或勇气／接纳／平静。如果我报了两个感受，先问「哪个更响」，只放最响的那个。如果我说不上来，就让我注意身体上紧的地方，在那里放。',
-'3. 四问，逐句发，每句等我回答：你能允许它就在那儿吗？→ 你能放下它吗？→ 你愿意放下它吗？→ 什么时候？',
-'4. 说：再回到那个场面，还剩多少？若还有，重复四问（措辞换成「剩下的那部分」），最多三轮。',
-'5. 若三轮还在，或我说放不掉／没感觉／越想越烦：说「现在，你能放下『想要控制这个卡住』吗？」，然后再走一次四问。不要去解决内容本身。',
-'6. 收尾：让我再想那件事，问现在什么感觉；然后让我记一句收益（原来什么样→现在什么样）；问我要停还是再来一轮。',
-'',
-'此外：',
-'- 如果我讲大段往事或开始分析自己，打断一次：「先回到此刻——现在说这件事的时候，什么感觉？」',
-'- 如果涉及身体病痛或心理诊断，说明一句：我们只是放掉对它的感受，不治疗、不诊断。',
-'- 如果我说好的感觉为什么要放，答：放掉它你可以感觉更好；然后问「还能更好吗？」',
-'- 我说「停」就停，不追问、不劝继续。',
-'',
-'现在开始，直接问第一个问题。'].join('\n');
-
-function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-function chips(list){
-  return '<div class="chips">'+list.map(function(x){
-    return '<button class="chip" data-f="'+x+'" onclick="tog(this)">'+x+'</button>';
-  }).join('')+'</div>';
+  return a;
 }
-function tog(el){
-  el.classList.toggle('on');
-  var sel=[].slice.call(document.querySelectorAll('.chip.on')).map(function(x){return x.getAttribute('data-f')});
-  S.feels=sel;
-  var nx=document.getElementById('nx');
-  if(nx)nx.disabled=sel.length===0;
-}
-function refresh(){var nx=document.getElementById('nx');if(nx)nx.disabled=S.feels.length===0}
+function save(a){try{localStorage.setItem(K,JSON.stringify(a))}catch(e){}}
+function set(h){W.innerHTML=h;window.scrollTo(0,0)}
 
+function bar(pct){
+  return '<div class="top"><button class="back" onclick="back()">返回</button><div class="bar"><i style="width:'+pct+'%"></i></div></div>';
+}
+function back(){
+  var p=S.stack.pop();
+  if(!p){home();return}
+  window[p.fn].apply(null,p.args||[]);
+}
+function go(fn,args,keep){
+  if(!keep){S.stack.push({fn:fn,args:args||[]})}
+  window[fn].apply(null,args||[]);
+}
+function pct(){
+  var n=S.feelings.length||1;
+  var base=14+(S.i/n)*72;
+  if(S.phase==='want')base+=4;
+  if(S.phase==='check')base+=6;
+  return Math.min(96,Math.round(base));
+}
+
+function home(){
+  S.stack=[];
+  var h='<h1>释放</h1>';
+  h+='<p class="sub">一件事牵出的感受，一条一条摊开——归到情绪，再归到底下的「想要」。<br>然后才放。</p>';
+  h+='<button class="big" onclick="startNew()">开始梳理</button>';
+  h+='<button class="ghost" onclick="gains()">我记过的</button>';
+  h+='<div class="note" style="margin-top:22px">这一套来自圣多纳释放法 1992 年原始课程：先认当下的感受，往上归到九类情绪，再归到「想要被认可／控制／安全」这三个根。<br><br>放掉一个类别，等于放掉它底下所有同类的感受，所以归类比细究有用。</div>';
+  set(h);
+}
+
+function startNew(){
+  S={topic:'',feelings:[],i:0,rounds:0,phase:'topic',note:'',stack:[]};
+  go('topic');
+}
+function topic(){
+  S.phase='topic';
+  var h=bar(6);
+  h+='<p class="stage">一 · 事情</p>';
+  h+='<p class="q">现在想放下的是什么？</p>';
+  h+='<p class="note">一件事、一个人、一个场面。越具体越好——最好不要是「我很焦虑」，而是「昨天开会时他那句话」。</p>';
+  h+='<input id="ti" placeholder="例：请学生来帮忙，他们反应很淡" value="'+esc(S.topic)+'">';
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="setTopic()">下一步</button>';
+  set(h);
+}
 function setTopic(){
   var v=(document.getElementById('ti').value||'').trim();
-  if(!v){toast('随便写一句就好');return}
-  S.topic=v;S.feels=[];S.feel='';S.round=0;S.stuck=false;S.saved=false;
-  show('locate');
+  if(!v){toast('写一句就够');return}
+  S.topic=v;S.feelings=[];S.i=0;S.rounds=0;
+  go('inventory',[],true);
 }
-function feelingNext(){
-  var f=S.feels.filter(function(x){return x!=='说不上来'});
-  if(!f.length&&S.feels.indexOf('说不上来')<0){toast('先选一个');return}
-  if(f.length>=2){show('pick');return}
-  S.feel=f.length?f[0]:'说不上来';
-  S.feels=[];
-  show('allow');
+
+function inventory(){
+  S.phase='inv';
+  var h=bar(12);
+  h+='<div class="ctx">'+esc(S.topic)+'</div>';
+  h+='<p class="stage">二 · 清点</p>';
+  h+='<p class="lead">好。先不开工。</p>';
+  h+='<p class="q">这件事，让你有哪些感受？<br>一条一条说，能想到几条算几条。</p>';
+  h+='<p class="note">不用挑，也不用排序。烦、怕、憋、不甘心、想哭、累——都算。<br>（说不清也行，写「说不上来」。）</p>';
+  h+='<input id="fi" placeholder="此刻的一个感受，一个词就行" onkeydown="if(event.key===\'Enter\')addF()">';
+  h+='<button class="mini" style="margin-top:10px" onclick="addF()">加一条</button>';
+  h+=renderList(true);
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" id="go" onclick="startLoop()">就这些，开始梳理</button>';
+  set(h);
+  var g=document.getElementById('go'); if(g)g.disabled=S.feelings.length===0;
 }
-function pickOne(f){S.feel=f;S.feels=[];show('allow')}
-function still(){
-  if(S.stuck){show('gain');return}
-  if(S.round>=3){show('stuck');return}
-  show('q1');
+function renderList(removable){
+  if(!S.feelings.length)return '';
+  var h='<div class="flist" style="margin-top:18px">';
+  for(var i=0;i<S.feelings.length;i++){
+    var f=S.feelings[i];
+    h+='<div class="fitem'+(f.done?' done':'')+'"><i>'+esc(f.t)+'</i>'+
+       (f.cat?'<span class="tag">'+esc(f.cat)+'</span>':'')+
+       (removable?'<b onclick="delF('+i+')">×</b>':'')+'</div>';
+  }
+  return h+'</div>';
 }
-function deep(x){S.deep=x;show('deepq')}
-function deepDone(){show(S.saved?'saved':'gain')}
-function saveGain(){
-  var v=(document.getElementById('gi').value||'').trim();
-  if(!v){toast('写一句就够，哪怕很短');return}
-  var a=store();
-  a.push({d:new Date().toLocaleDateString('zh-CN'),t:S.topic,f:S.feel,n:v});
-  persist(a);S.saved=true;
-  show('saved');
-}
-function clearAll(){
-  if(confirm('清空全部收益记录？这个不能撤销。')){
-    persist([]);show('gains');toast('已清空');
+function addF(){
+  var el=document.getElementById('fi');
+  var v=(el.value||'').trim();
+  if(!v){toast('写一个词就行');return}
+  S.feelings.push({t:v,cat:'',want:'',rounds:0,done:false});
+  el.value='';el.focus();
+  var g=document.getElementById('go'); if(g)g.disabled=false;
+  var box=W.querySelector('.flist');
+  var html=renderList(true);
+  if(box){box.outerHTML=html}else{
+    var b=document.getElementById('go');
+    b.insertAdjacentHTML('beforebegin',html);
   }
 }
-function copyPrompt(){
-  var t=PROMPT;
-  if(navigator.clipboard&&navigator.clipboard.writeText){
-    navigator.clipboard.writeText(t).then(function(){toast('已复制')},function(){fallbackCopy(t)});
-  }else{fallbackCopy(t)}
+function delF(i){
+  S.feelings.splice(i,1);
+  var box=W.querySelector('.flist');
+  var html=renderList(true);
+  if(box){if(html){box.outerHTML=html}else{box.remove()}}
+  var g=document.getElementById('go'); if(g)g.disabled=S.feelings.length===0;
 }
-function fallbackCopy(t){
-  var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';
-  document.body.appendChild(ta);ta.select();
-  try{document.execCommand('copy');toast('已复制')}catch(e){toast('长按文字手动复制')}
-  document.body.removeChild(ta);
+function startLoop(){
+  if(!S.feelings.length){toast('先写一条');return}
+  S.i=0;S.rounds=0;
+  go('allow');
 }
-function reset(){S={topic:'',feel:'',feels:[],round:0,stuck:false,saved:false};stack=[]}
-function show(name){
-  if(name!=='welcome'&&name!=='gains'&&name!=='prompt'){stack.push(name)}
-  V[name]();
+
+function cur(){return S.feelings[S.i]}
+function stageLine(){
+  return '<p class="stage">第 '+(S.i+1)+' 条 / 共 '+S.feelings.length+' 条</p>';
 }
-function goBack(){
-  stack.pop();
-  if(!stack.length){V.welcome();return}
-  V[stack[stack.length-1]]();
+function allow(){
+  S.phase='allow';
+  var f=cur();
+  var h=bar(pct())+stageLine();
+  h+='<p class="lead">好。先只看这一条。</p>';
+  h+='<p class="q">让「'+esc(f.t)+'」就在那儿。<br>不赶它走，也别压回去。</p>';
+  h+='<p class="note">不用想它从哪来，也不用解释。就让它在那儿。</p>';
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'cat\')">能感觉到</button>';
+  h+='<button class="ghost" onclick="toast(\'没关系，就让它在那儿待一会儿，不用做任何事\');go(\'cat\')">有点难</button>';
+  set(h);
 }
-V.welcome();
+
+function cat(){
+  S.phase='cat';
+  var f=cur();
+  var h=bar(pct())+stageLine();
+  h+='<div class="ctx">现在是：'+esc(f.t)+'</div>';
+  h+='<p class="q">往回收一层——它更像下面哪一种？</p>';
+  h+='<p class="note">凭第一反应，别分析。归到类别，是因为放掉一个类别，等于放掉它底下所有同类的感受。</p>';
+  h+='<div class="chips">';
+  for(var i=0;i<CATS.length;i++){
+    h+='<button class="chip" onclick="pickCat(\''+CATS[i]+'\')">'+CATS[i]+'</button>';
+  }
+  h+='</div>';
+  h+='<button class="ghost" onclick="pickCat(\'\')">说不上来，就身体上那块紧</button>';
+  set(h);
+}
+function pickCat(c){
+  cur().cat=c;
+  if(c==='勇气'||c==='接纳'||c==='平静'){
+    cur().pos=true;
+    toast('这是好的那一侧——也放掉它，你可以更好');
+    go('q1',[],true);
+    return;
+  }
+  go('q1',[],true);
+}
+
+function qnum(){
+  var f=cur();
+  return f.rounds>0?'剩下的那部分，':'';
+}
+function q1(){
+  S.phase='q';
+  var f=cur();
+  var label=f.cat||f.t;
+  var h=bar(pct())+stageLine();
+  h+='<div class="ctx">在放的是：'+esc(label)+'</div>';
+  h+=(qnum()?'<p class="note">'+qnum()+'</p>':'');
+  h+='<p class="q">你能允许它在吗？</p>';
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'q2\')">能</button>';
+  h+='<button class="ghost" onclick="toast(\'可以。答案不重要，往下走\');go(\'q2\')">不能</button>';
+  set(h);
+}
+function q2(){
+  S.phase='q';
+  var f=cur();var label=f.cat||f.t;
+  var h=bar(pct())+stageLine();
+  h+='<div class="ctx">在放的是：'+esc(label)+'</div>';
+  h+='<p class="q">你能放下它吗？</p>';
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'q3\')">能</button>';
+  h+='<button class="row" onclick="toast(\'可以，照样往下\');go(\'q3\')"><b>还不能</b></button>';
+  h+='<button class="row" onclick="toast(\'不用想清楚\');go(\'q3\')"><b>说不清</b></button>';
+  set(h);
+}
+function q3(){
+  S.phase='q';
+  var f=cur();var label=f.cat||f.t;
+  var h=bar(pct())+stageLine();
+  h+='<div class="ctx">在放的是：'+esc(label)+'</div>';
+  h+='<p class="q">你愿意放下它吗？</p>';
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'q4\')">愿意</button>';
+  h+='<button class="row" onclick="toast(\'可以\');go(\'q4\')"><b>不愿意</b></button>';
+  h+='<button class="row" onclick="toast(\'可以\');go(\'q4\')"><b>说不上</b></button>';
+  set(h);
+}
+function q4(){
+  S.phase='q';
+  var f=cur();var label=f.cat||f.t;
+  var h=bar(pct())+stageLine();
+  h+='<div class="ctx">在放的是：'+esc(label)+'</div>';
+  h+='<p class="q">什么时候？</p>';
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="afterQ4()">现在</button>';
+  h+='<button class="row" onclick="afterQ4()"><b>等一下</b></button>';
+  h+='<button class="row" onclick="afterQ4()"><b>不知道</b></button>';
+  set(h);
+}
+function afterQ4(){
+  if(cur().pos){go('check',[],true);return}
+  go('want',[],true);
+}
+
+function want(){
+  S.phase='want';
+  var f=cur();
+  var h=bar(pct())+stageLine();
+  h+='<div class="ctx">刚才放的是：'+esc(f.cat||f.t)+'</div>';
+  h+='<p class="lead">这一条开始松了。再往下看一层。</p>';
+  h+='<p class="q">「'+esc(f.t)+'」底下，通常是一个「想要」。<br>是哪一个？</p>';
+  for(var i=0;i<WANTS.length;i++){
+    h+='<button class="row" onclick="pickWant(\''+WANTS[i][0]+'\')"><b>'+WANTS[i][0]+'</b><span>'+WANTS[i][1]+'</span></button>';
+  }
+  h+='<button class="ghost" onclick="pickWant(\'说不清\')">说不清</button>';
+  set(h);
+}
+function pickWant(w){
+  cur().want=w;
+  if(w==='说不清'){go('check',[],true);return}
+  go('wantRel',[],true);
+}
+function wantRel(){
+  S.phase='want';
+  var f=cur();
+  var h=bar(pct())+stageLine();
+  h+='<div class="ctx">'+esc(f.t)+' → '+esc(f.want)+'</div>';
+  h+='<p class="q">你能放下这个「'+esc(f.want)+'」吗？</p>';
+  h+='<p class="note">认出来的那一瞬间，它常常自己就走了。不必凑满四个问题。</p>';
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'check\')">能</button>';
+  h+='<button class="ghost" onclick="go(\'check\')">还不能</button>';
+  set(h);
+}
+
+function check(){
+  S.phase='check';
+  var f=cur();var label=f.cat||f.t;
+  var h=bar(pct())+stageLine();
+  h+='<div class="ctx">'+esc(f.t)+(f.want&&f.want!=='说不清'?' → '+esc(f.want):'')+'</div>';
+  h+='<p class="lead">再回去看一眼。</p>';
+  h+='<p class="q">「'+esc(f.t)+'」还剩多少？</p>';
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="nextF(true)">没了</button>';
+  h+='<button class="row" onclick="still()"><b>还有一点</b></button>';
+  h+='<button class="row" onclick="still()"><b>还在</b></button>';
+  set(h);
+}
+function still(){
+  var f=cur();
+  f.rounds++;
+  if(f.rounds>=3){
+    toast('剩下的先留着，回头再来看它');
+    nextF(false);
+    return;
+  }
+  go('q1',[],true);
+}
+function nextF(clean){
+  cur().done=true;
+  cur().clean=!!clean;
+  S.i++;
+  S.rounds=0;
+  if(S.i<S.feelings.length){go('allow',[],true)}
+  else{go('review')}
+}
+
+function review(){
+  S.phase='review';
+  var h=bar(90);
+  h+='<div class="ctx">'+esc(S.topic)+'</div>';
+  h+='<p class="stage">回头</p>';
+  h+='<p class="lead">'+S.feelings.length+' 条都过了一遍。</p>';
+  h+='<p class="q">现在再想整件事——<br>那个场面。什么感觉？</p>';
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'summary\')">松了，就这样</button>';
+  h+='<button class="row" onclick="more()"><b>还有别的冒出来</b><span>再加几条，接着梳理</span></button>';
+  h+='<button class="row" onclick="again()"><b>还剩一点，再走一轮</b><span>从第一条重新过一遍</span></button>';
+  set(h);
+}
+function more(){
+  for(var i=0;i<S.feelings.length;i++)S.feelings[i].done=true;
+  go('inventory');
+}
+function again(){
+  for(var i=0;i<S.feelings.length;i++){S.feelings[i].done=false;S.feelings[i].rounds=0}
+  S.i=0;go('allow');
+}
+
+function summary(){
+  S.phase='sum';
+  var h=bar(97);
+  h+='<h1 style="font-size:23px">梳理完了</h1>';
+  h+='<div class="ctx">'+esc(S.topic)+'</div>';
+  h+='<table class="tbl"><tr><th>感受</th><th>归到</th><th>底下的想要</th></tr>';
+  for(var i=0;i<S.feelings.length;i++){
+    var f=S.feelings[i];
+    h+='<tr><td>'+esc(f.t)+'</td><td>'+esc(f.cat||'—')+'</td><td>'+esc(f.want||'—')+'</td></tr>';
+  }
+  h+='</table>';
+  var left=0;
+  for(var j=0;j<S.feelings.length;j++){if(S.feelings[j].clean===false)left++}
+  if(left){h+='<p class="note">有 '+left+' 条只松了一点，还留着一些。这很正常——老议题很少一次放完，回头再来放它一次。</p>'}
+  h+='<p class="note">注意看：几条不同的感受，最后常常收到同一个「想要」上。<br>那个想要，就是这套东西说的一直在把它推远的东西——<b>想要＝匮乏</b>。</p>';
+  h+='<p class="q" style="font-size:18px;margin-top:6px">记一句收益：原来什么样，现在什么样。</p>';
+  h+='<textarea id="nt" rows="3" placeholder="例：原来一想到就挂不住，现在想起来没什么了"></textarea>';
+  h+='<button class="big" onclick="saveSession()">记下</button>';
+  h+='<button class="ghost" onclick="home()">不记，结束</button>';
+  set(h);
+}
+function saveSession(){
+  var v=(document.getElementById('nt').value||'').trim();
+  if(!v){toast('写一句就够，哪怕很短');return}
+  var a=store();
+  a.push({d:new Date().toLocaleDateString('zh-CN'),topic:S.topic,note:v,rows:S.feelings.map(function(f){return {t:f.t,cat:f.cat,want:f.want}})});
+  save(a);
+  toast('记下了');
+  home();
+}
+
+function gains(){
+  var a=store();var h=bar(100);
+  h=h.replace('<button class="back" onclick="back()">返回</button>','<button class="back" onclick="home()">返回</button>');
+  h+='<h1>我记过的</h1>';
+  if(!a.length){h+='<p class="sub">还没有。梳理完记一句，慢慢能看出变化。</p>'}
+  else{
+    for(var i=a.length-1;i>=0;i--){
+      var s=a[i];
+      h+='<div class="logitem"><div class="d">'+esc(s.d)+'</div>'+
+         (s.topic?'<div class="t">'+esc(s.topic)+'</div>':'')+
+         '<div class="n">'+esc(s.note)+'</div>';
+      if(s.rows&&s.rows.length){
+        var line=s.rows.map(function(r){return r.t+(r.want&&r.want!=='说不清'?'→'+r.want:'')}).join('、');
+        h+='<div class="d" style="margin-top:6px">'+esc(line)+'</div>';
+      }
+      h+='</div>';
+    }
+  }
+  h+='<div class="spacer"></div><button class="ghost" onclick="home()">回到首页</button>';
+  set(h);
+}
+
+home();
 </script>
 </body>
 </html>
