@@ -27,6 +27,7 @@ h1{font-size:27px;font-weight:500;margin:0 0 8px;letter-spacing:.5px}
 .lead{font-size:19px;line-height:1.65;margin:0 0 14px}
 .q{font-size:20px;line-height:1.6;margin:0 0 18px}
 .note{font-size:13.5px;color:var(--mut);line-height:1.65;margin:0 0 14px}
+.guide{font-size:15.5px;line-height:1.72;margin:0 0 18px;padding:13px 15px;background:#FBF8F2;border:1px solid var(--line);border-radius:12px}
 .spacer{flex:1;min-height:10px}
 button.big{width:100%;border:0;border-radius:14px;background:var(--acc);color:#fff;font:inherit;font-size:17px;padding:16px;margin-top:10px}
 button.big:disabled{opacity:.32}
@@ -146,6 +147,7 @@ function inventory(){
   h+='<div class="ctx">'+esc(S.topic)+'</div>';
   h+='<p class="stage">二 · 清点</p>';
   h+='<p class="lead">好。先不开工。</p>';
+  h+='<div class="guide">先想那个最不舒服的瞬间——他说了哪句话，那几秒钟是什么样子。<br>然后把注意力收回来，放在自己身上。</div>';
   h+='<p class="q">这件事，让你有哪些感受？<br>一条一条说，能想到几条算几条。</p>';
   h+='<p class="note">不用挑，也不用排序。烦、怕、憋、不甘心、想哭、累——都算。<br>（说不清也行，写「说不上来」。）</p>';
   h+='<input id="fi" placeholder="此刻的一个感受，一个词就行" onkeydown="if(event.key===\'Enter\')addF()">';
