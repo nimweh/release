@@ -50,6 +50,7 @@ input:focus,textarea:focus{outline:2px solid var(--accw);border-color:var(--acc)
 .tbl{width:100%;border-collapse:collapse;font-size:14.5px;margin:0 0 18px}
 .tbl th,.tbl td{border-bottom:1px solid var(--line);padding:10px 6px;text-align:left;vertical-align:top}
 .tbl th{font-weight:500;color:var(--mut);font-size:13px}
+.timer{font-size:34px;font-weight:500;text-align:center;margin:16px 0 8px;color:var(--acc);font-variant-numeric:tabular-nums}
 .logitem{border-bottom:1px solid var(--line);padding:14px 0}
 .logitem .d{font-size:12.5px;color:var(--mut);margin-bottom:4px}
 .logitem .t{font-size:15px;margin-bottom:4px}
@@ -114,6 +115,7 @@ function home(){
   var h='<h1>释放</h1>';
   h+='<p class="sub">一件事牵出的感受，一条一条摊开——归到情绪，再归到底下的「想要」。<br>然后才放。</p>';
   h+='<button class="big" onclick="startNew()">开始梳理</button>';
+  h+='<p class="note" style="margin-top:14px">放不掉的，中间会带你走一条慢的——不硬推，允许它留着。</p>';
   h+='<button class="ghost" onclick="gains()">我记过的</button>';
   h+='<div class="note" style="margin-top:22px">这一套来自圣多纳释放法 1992 年原始课程：先认当下的感受，往上归到九类情绪，再归到「想要被认可／控制／安全」这三个根。<br><br>放掉一个类别，等于放掉它底下所有同类的感受，所以归类比细究有用。</div>';
   set(h);
@@ -209,7 +211,7 @@ function allow(){
   h+='<p class="note">不用想它从哪来，也不用解释。就让它在那儿。</p>';
   h+='<div class="spacer"></div>';
   h+='<button class="big" onclick="go(\'cat\')">能感觉到</button>';
-  h+='<button class="ghost" onclick="toast(\'没关系，就让它在那儿待一会儿，不用做任何事\');go(\'cat\')">有点难</button>';
+  h+='<button class="ghost" onclick="go(\'slow0\')">有点难，慢一点来</button>';
   set(h);
 }
 
@@ -349,7 +351,109 @@ function still(){
     nextF(false);
     return;
   }
+  if(f.rounds>=2){go('slow0',[],true);return}
   go('q1',[],true);
+}
+
+/* ── 慢放：放不下的情绪走这条，不硬推 ── */
+function tm(sec){
+  return '<div class="timer" id="tm">'+sec+'</div>'+
+         '<button class="mini" onclick="startTimer('+sec+')">开始 '+sec+' 秒</button>';
+}
+function startTimer(sec){
+  var el=document.getElementById('tm');var left=sec;
+  if(window._ti)clearInterval(window._ti);
+  el.textContent=left;
+  window._ti=setInterval(function(){
+    left--;
+    if(left<0){clearInterval(window._ti);el.textContent='时间到';toast('可以往下点了');return}
+    el.textContent=left;
+  },1000);
+}
+function slowHead(step){
+  var f=cur();
+  return bar(pct())+'<p class="stage">慢一点 · '+step+'/6</p>'+
+         '<div class="ctx">'+esc(f.t)+(f.cat?' → '+esc(f.cat):'')+'</div>';
+}
+function slow0(){
+  S.phase='slow';
+  var h=slowHead(1);
+  h+='<p class="q">不命名。<br>就看着它。</p>';
+  h+='<p class="note">不用告诉我它叫什么。不用分析它从哪来。</p>';
+  h+=tm(30);
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'slow1\')">看完了</button>';
+  set(h);
+}
+function slow1(){
+  S.phase='slow';
+  var h=slowHead(2);
+  h+='<p class="q">它在身体的哪儿？</p>';
+  h+='<p class="note">胸、胃、喉咙、肩、后颈。哪儿都行。</p>';
+  h+='<div class="chips" style="margin-top:14px">';
+  var parts=['胸口','胃','喉咙','肩','后颈'];
+  for(var i=0;i<parts.length;i++){
+    h+='<button class="chip" onclick="pickBody(\''+parts[i]+'\')">'+parts[i]+'</button>';
+  }
+  h+='</div>';
+  h+='<button class="ghost" onclick="pickBody(\'\')">哪儿都没有，就是一团</button>';
+  set(h);
+}
+function pickBody(p){
+  cur().body=p;
+  go('slow2',[],true);
+}
+function slow2(){
+  S.phase='slow';
+  var f=cur();
+  var h=slowHead(3);
+  h+=(f.body?'<div class="ctx">在：'+esc(f.body)+'</div>':'');
+  h+='<p class="q">允许那块地方是紧的。<br>不用它松开。</p>';
+  h+='<p class="note">不是去放松肌肉。是允许它紧，然后松手。</p>';
+  h+=tm(30);
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'slow3\')">好</button>';
+  set(h);
+}
+function slow3(){
+  S.phase='slow';
+  var h=slowHead(4);
+  h+='<p class="q">现在，能放下它吗？</p>';
+  h+='<p class="note">三个答案都可以。答「不能」也已经放掉一部分。</p>';
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'slow4\')">能</button>';
+  h+='<button class="row" onclick="go(\'slow4\')"><b>不能</b></button>';
+  h+='<button class="row" onclick="go(\'slow4\')"><b>不知道</b></button>';
+  set(h);
+}
+function slow4(){
+  S.phase='slow';
+  var h=slowHead(5);
+  h+='<p class="q">再回去看一眼。<br>还紧吗？剩多少？</p>';
+  h+='<p class="note">不管是什么答案，都接受。这一步不用做什么。</p>';
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'slow5\')">看到了</button>';
+  set(h);
+}
+function slow5(){
+  S.phase='slow';
+  var h=slowHead(6);
+  h+='<p class="q">剩下的那部分，也允许它在。</p>';
+  h+='<p class="lead" style="margin-top:6px">它可以留着。<br>你不用今天就把它解决掉。</p>';
+  h+=tm(30);
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="slowDone(true)">再看一眼这条</button>';
+  h+='<button class="ghost" onclick="slowDone(false)">这条先放着，走下一题</button>';
+  set(h);
+}
+function slowDone(recheck){
+  var f=cur();
+  if(recheck){
+    if(!f.cat){go('cat',[],true);return}
+    go('check',[],true);
+    return;
+  }
+  nextF(false);
 }
 function nextF(clean){
   cur().done=true;
