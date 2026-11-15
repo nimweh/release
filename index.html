@@ -731,8 +731,7 @@ home();
 WANTS = [
   ['想要被认可', '想让谁觉得你好、怕他觉得你不好'],
   ['想要控制', '想把结果抓住、想让它按你的来'],
-  ['想要安全', '怕失去什么、怕自己不安全'],
-  ['想要分离', '想守住自己、想显得不一样、不想被并进去']
+  ['想要安全', '怕失去什么、怕自己不安全']
 ];
 
 REV = {
@@ -765,7 +764,7 @@ function wantRev() {
   h += '<p class="lead">同一个硬币的另一面：<b>' + esc(r) + '</b>。</p>';
   h += '<p class="q">你有没有一点，也在要它？</p>';
   h += '<p class="note">' + esc(rd) + '</p>';
-  h += '<p class="note">这一面不一起放，它会从另一头把刚放的又拽回来。<br>修行的人最容易掉在最后那一对：<b>追合一，本身就是想要合一</b>。</p>';
+  h += '<p class="note">这一面不一起放，它会从另一头把刚放的又拽回来。</p>';
   h += '<div class="spacer"></div>';
   h += '<button class="big" onclick="wantRevNext()">有，一起放</button>';
   h += '<button class="row" onclick="wantRevNext()"><b>没有，只放这一面</b></button>';
@@ -831,7 +830,7 @@ function home() {
   h += '<button class="ghost" onclick="go(\'dIntro\')">身体释放</button>';
   h += '<p class="note">没有具体的某件事，或者想往更里面看一眼：从身体进，走十二条，最后问一句——那个独立的「我」，找得到吗。</p>';
   h += '<button class="ghost" onclick="gains()">我记过的</button>';
-  h += '<div class="note" style="margin-top:22px">四个想要：被认可／控制／安全／<b>分离</b>。每个都带一面反向力——想被控制、想被否定、想要刺激、想要合一。只放一头，另一头会从背后把它拽回来。<br><br>放掉一个类别，等于放掉它底下所有同类的感受，所以归类比细究有用。</div>';
+  h += '<div class="note" style="margin-top:22px">三个想要：被认可／控制／安全。每个都带一面反向力——想被否定、想被控制、想要刺激。只放一头，另一头会从背后把它拽回来。<br><br>三个都放完，最后再往上一层：<b>想要分离</b>。它不在那三个旁边，在它们前面。<br><br>放掉一个类别，等于放掉它底下所有同类的感受，所以归类比细究有用。</div>';
   set(h);
 }
 
@@ -852,7 +851,7 @@ function root() {
   var h = bar(94) + '<p class="stage">最根的那层</p>';
   h += '<p class="lead">' + S.feelings.length + ' 条都过了一遍。</p>';
   h += '<p class="q">最后一件事。<br>这件事底下，还有一个更根的东西：<br><b>想自己是一个人，独自面对着它。</b></p>';
-  h += '<p class="note">这是四个想要里最深的那个——<b>想要分离</b>。<br>想被认可、想控制、想要安全，都建在它上面。</p>';
+  h += '<p class="note">这是第四个想要——<b>想要分离</b>。<br>它不在刚才那三个旁边，它在它们前面：想被认可、想控制、想要安全，都是从它这儿长出来的。</p>';
   h += '<p class="note">不用急着认。就看一眼。</p>';
   h += '<div class="spacer"></div>';
   h += '<button class="big" onclick="rootRel()">有一点</button>';
