@@ -807,6 +807,78 @@ function d7next(none) {
   go('d8', [], true);
 }
 
+/* ── 改：深潜 → 身体释放（改标签与入口文案） ── */
+function dstage(i) { return '<p class="stage">身体释放 · ' + i + '/12</p>'; }
+
+function dIntro() {
+  D = { body: '', note: '' };
+  var h = dbar(0) + '<p class="stage">身体释放</p>';
+  h += '<p class="lead">这条路不一样。</p>';
+  h += '<p class="q">它不处理某件事。<br>它是从身体进，往「我」这个感觉上看一眼。</p>';
+  h += '<p class="note">大约 15 分钟。中间会停下来，不用赶。<br>身体 → 空间 → 想守住自己的那个动作 → 那个「我」，找得到吗。</p>';
+  h += '<p class="note">走不下去，随时点返回，没有关系。</p>';
+  h += '<div class="spacer"></div>';
+  h += '<button class="big" onclick="go(\'d1\')">开始</button>';
+  set(h);
+}
+
+function home() {
+  S.stack = [];
+  var h = '<h1>释放</h1>';
+  h += '<p class="sub">一件事牵出的感受，一条一条摊开——归到情绪，再归到底下的「想要」。最后看一眼最根的那层。</p>';
+  h += '<button class="big" onclick="startNew()">开始梳理</button>';
+  h += '<p class="note" style="margin-top:14px">放不掉的，中间会带你走一条慢的——不硬推，允许它留着。</p>';
+  h += '<button class="ghost" onclick="go(\'dIntro\')">身体释放</button>';
+  h += '<p class="note">没有具体的某件事，或者想往更里面看一眼：从身体进，走十二条，最后问一句——那个独立的「我」，找得到吗。</p>';
+  h += '<button class="ghost" onclick="gains()">我记过的</button>';
+  h += '<div class="note" style="margin-top:22px">四个想要：被认可／控制／安全／<b>分离</b>。每个都带一面反向力——想被控制、想被否定、想要刺激、想要合一。只放一头，另一头会从背后把它拽回来。<br><br>放掉一个类别，等于放掉它底下所有同类的感受，所以归类比细究有用。</div>';
+  set(h);
+}
+
+/* ── 加：主链最后一层「最根的那层」 ── */
+function nextF(clean) {
+  cur().done = true;
+  cur().clean = !!clean;
+  S.i++;
+  S.rounds = 0;
+  if (S.i < S.feelings.length) { go('allow', [], true); return; }
+  if (!S.rootDone) { go('root'); return; }
+  go('review');
+}
+
+function root() {
+  if (!S.feelings.length) { go('review', [], true); return; }
+  S.phase = 'root';
+  var h = bar(94) + '<p class="stage">最根的那层</p>';
+  h += '<p class="lead">' + S.feelings.length + ' 条都过了一遍。</p>';
+  h += '<p class="q">最后一件事。<br>这件事底下，还有一个更根的东西：<br><b>想自己是一个人，独自面对着它。</b></p>';
+  h += '<p class="note">这是四个想要里最深的那个——<b>想要分离</b>。<br>想被认可、想控制、想要安全，都建在它上面。</p>';
+  h += '<p class="note">不用急着认。就看一眼。</p>';
+  h += '<div class="spacer"></div>';
+  h += '<button class="big" onclick="rootRel()">有一点</button>';
+  h += '<button class="ghost" onclick="rootDone()">没有，说不上</button>';
+  set(h);
+}
+
+function rootRel() {
+  S.phase = 'root';
+  var h = bar(96) + '<p class="stage">最根的那层</p>';
+  h += '<p class="q">这个「想自己扛着」——<br>能放下它吗？</p>';
+  h += '<p class="note">连带它的反面：想被交出去、想有人替你担。<br>这一面不一起放，它会把你拽回去。</p>';
+  h += '<div class="spacer"></div>';
+  h += '<button class="big" onclick="rootDone()">能</button>';
+  h += '<button class="row" onclick="rootDone()"><b>还不能</b></button>';
+  set(h);
+}
+
+function rootDone() {
+  S.rootDone = true;
+  go('review', [], true);
+}
+
+/* 首屏要等本文件加载后重画，否则用的是第一段脚本里的旧 home() */
+home();
+
 </script>
 </body>
 </html>
