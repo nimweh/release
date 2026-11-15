@@ -119,7 +119,7 @@ function home(){
   h+='<button class="ghost" onclick="go(\'dIntro\')">往源头上看一眼（深潜）</button>';
   h+='<p class="note">这条路不处理某件事。它从身体进，一路看到「想守住自己」这个动作，然后问一句：那个独立的「我」，找得到吗。</p>';
   h+='<button class="ghost" onclick="gains()">我记过的</button>';
-  h+='<div class="note" style="margin-top:22px">这一套来自圣多纳释放法 1992 年原始课程：先认当下的感受，往上归到九类情绪，再归到「想要被认可／控制／安全」这三个根。<br><br>放掉一个类别，等于放掉它底下所有同类的感受，所以归类比细究有用。</div>';
+  h+='<div class="note" style="margin-top:22px">先认当下的感受，往上归到九类情绪，再归到底下的「想要」。<br><br>四个想要：被认可／控制／安全／<b>分离</b>。每个都带一面反向力——想被控制、想被否定、想要刺激、想要合一。只放一头，另一头会从背后把它拽回来。<br><br>放掉一个类别，等于放掉它底下所有同类的感受，所以归类比细究有用。</div>';
   set(h);
 }
 
@@ -722,6 +722,73 @@ function saveDeep(){
 }
 
 home();
+</script>
+<script>
+/* 四欲补丁：主链加第四欲「想要分离」+ 每欲的反向力
+   这一块作为独立 <script> 注入，避免和主脚本的转义纠缠。
+   加载顺序在后，同名函数覆盖前面的定义。 */
+
+WANTS = [
+  ['想要被认可', '想让谁觉得你好、怕他觉得你不好'],
+  ['想要控制', '想把结果抓住、想让它按你的来'],
+  ['想要安全', '怕失去什么、怕自己不安全'],
+  ['想要分离', '想守住自己、想显得不一样、不想被并进去']
+];
+
+REV = {
+  '想要被认可': '想要被否定',
+  '想要控制': '想要被控制',
+  '想要安全': '想要刺激惊悚',
+  '想要分离': '想要合一'
+};
+
+REVDESC = {
+  '想要被认可': '就是那种反着来：偏不让他们喜欢我，偏要说不。',
+  '想要控制': '宁可让别人来定、不用自己担。',
+  '想要安全': '受不了一成不变，非要有点惊险才觉得活着。',
+  '想要分离': '特别想融进去、想属于什么、想说「让我属于这里」。'
+};
+
+function pickWant(w) {
+  cur().want = w;
+  if (w === '说不清') { go('check', [], true); return; }
+  go('wantRev', [], true);
+}
+
+function wantRev() {
+  S.phase = 'want';
+  var f = cur();
+  var r = REV[f.want] || '';
+  var rd = REVDESC[f.want] || '';
+  var h = bar(pct()) + stageLine();
+  h += '<div class="ctx">' + esc(f.t) + ' → ' + esc(f.want) + '</div>';
+  h += '<p class="lead">同一个硬币的另一面。</p>';
+  h += '<p class="q">选「' + esc(f.want) + '」的时候，<br>常常也在要「' + esc(r) + '」。</p>';
+  h += '<p class="note">' + esc(rd) + '</p>';
+  h += '<p class="note">这一面不一起放，它会从另一头把刚放的又拽回来。<br>修行的人最容易掉在最后那一对：<b>追合一，本身就是想要合一</b>。</p>';
+  h += '<div class="spacer"></div>';
+  h += '<button class="big" onclick="wantRevNext()">有，一起放</button>';
+  h += '<button class="row" onclick="wantRevNext()"><b>没有，只放这一面</b></button>';
+  set(h);
+}
+
+function wantRevNext() { go('wantRel', [], true); }
+
+function wantRel() {
+  S.phase = 'want';
+  var f = cur();
+  var h = bar(pct()) + stageLine();
+  h += '<div class="ctx">' + esc(f.t) + ' → ' + esc(f.want) + '</div>';
+  h += '<p class="q">你能放下这个「' + esc(f.want) + '」吗？</p>';
+  h += '<p class="note">连带它的反面「' + esc(REV[f.want] || '') + '」，一起。<br>认出来的那一瞬间，它常常自己就走。不必凑满四个问题。</p>';
+  h += '<div class="spacer"></div>';
+  h += '<button class="big" onclick="wantRelNext()">能</button>';
+  h += '<button class="ghost" onclick="wantRelNext()">还不能</button>';
+  set(h);
+}
+
+function wantRelNext() { go('check', [], true); }
+
 </script>
 </body>
 </html>
