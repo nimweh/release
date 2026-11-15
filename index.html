@@ -762,8 +762,8 @@ function wantRev() {
   var rd = REVDESC[f.want] || '';
   var h = bar(pct()) + stageLine();
   h += '<div class="ctx">' + esc(f.t) + ' → ' + esc(f.want) + '</div>';
-  h += '<p class="lead">同一个硬币的另一面。</p>';
-  h += '<p class="q">选「' + esc(f.want) + '」的时候，<br>常常也在要「' + esc(r) + '」。</p>';
+  h += '<p class="lead">同一个硬币的另一面：<b>' + esc(r) + '</b>。</p>';
+  h += '<p class="q">你有没有一点，也在要它？</p>';
   h += '<p class="note">' + esc(rd) + '</p>';
   h += '<p class="note">这一面不一起放，它会从另一头把刚放的又拽回来。<br>修行的人最容易掉在最后那一对：<b>追合一，本身就是想要合一</b>。</p>';
   h += '<div class="spacer"></div>';
@@ -788,6 +788,24 @@ function wantRel() {
 }
 
 function wantRelNext() { go('check', [], true); }
+
+/* ── 补：深潜第 7 步显式命名「想要分离」 ── */
+function d7() {
+  var h = dbar(7) + dstage(7);
+  h += '<p class="lead">再注意一个很微妙的动作。</p>';
+  h += '<p class="q">想把自己守住。<br>想不被并进去。<br>想保持「我是我」。</p>';
+  h += '<p class="note" style="margin-top:2px">这个动作，书里给它起了名字：<b>想要分离</b>。<br>四个基本欲望里最深的一个——想被认可、想控制、想要安全，都建在它上面。</p>';
+  h += '<p class="note">不需要解释它。只要看它有没有在动。</p>';
+  h += '<div class="spacer"></div>';
+  h += '<button class="big" onclick="d7next()">有</button>';
+  h += '<button class="ghost" onclick="d7next(true)">不太有</button>';
+  set(h);
+}
+
+function d7next(none) {
+  if (none) toast('没有也没关系，往下走');
+  go('d8', [], true);
+}
 
 </script>
 </body>
