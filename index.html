@@ -116,6 +116,8 @@ function home(){
   h+='<p class="sub">一件事牵出的感受，一条一条摊开——归到情绪，再归到底下的「想要」。<br>然后才放。</p>';
   h+='<button class="big" onclick="startNew()">开始梳理</button>';
   h+='<p class="note" style="margin-top:14px">放不掉的，中间会带你走一条慢的——不硬推，允许它留着。</p>';
+  h+='<button class="ghost" onclick="go(\'dIntro\')">往源头上看一眼（深潜）</button>';
+  h+='<p class="note">这条路不处理某件事。它从身体进，一路看到「想守住自己」这个动作，然后问一句：那个独立的「我」，找得到吗。</p>';
   h+='<button class="ghost" onclick="gains()">我记过的</button>';
   h+='<div class="note" style="margin-top:22px">这一套来自圣多纳释放法 1992 年原始课程：先认当下的感受，往上归到九类情绪，再归到「想要被认可／控制／安全」这三个根。<br><br>放掉一个类别，等于放掉它底下所有同类的感受，所以归类比细究有用。</div>';
   set(h);
@@ -537,6 +539,186 @@ function gains(){
   }
   h+='<div class="spacer"></div><button class="ghost" onclick="home()">回到首页</button>';
   set(h);
+}
+
+/* ── 深潜：身体 → 空间 → 想要分离 → 找「我」 ── */
+var D={body:'',note:''};
+var DK='release_deep_v1';
+function dstore(){try{return JSON.parse(localStorage.getItem(DK)||'[]')}catch(e){return[]}}
+function dbar(i){var p=Math.min(98,Math.round(i/14*100));
+  return '<div class="top"><button class="back" onclick="back()">返回</button><div class="bar"><i style="width:'+p+'%"></i></div></div>';}
+function dstage(i){return '<p class="stage">深潜 · '+i+'/12</p>';}
+
+function dIntro(){
+  D={body:'',note:''};
+  var h=dbar(0)+'<p class="stage">深潜</p>';
+  h+='<p class="lead">这条路不一样。</p>';
+  h+='<p class="q">它不处理某件事。<br>它是往「我」这个感觉上看一眼。</p>';
+  h+='<p class="note">大约 15 分钟。中间会停下来，不用赶。<br>身体 → 空间 → 想守住自己的那个动作 → 那个「我」，找得到吗。</p>';
+  h+='<p class="note">走不下去，随时点返回，没有关系。</p>';
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'d1\')">开始</button>';
+  set(h);
+}
+function d1(){
+  var h=dbar(1)+dstage(1);
+  h+='<p class="q">先让身体松到它能松的程度就行。<br>不勉强。</p>';
+  h+='<p class="lead" style="margin-top:4px">身上有没有一块地方，是有点紧的、有点不对劲的？</p>';
+  h+='<div class="chips" style="margin-top:14px">';
+  h+='<button class="chip" onclick="dChest()">胸口</button>';
+  h+='<button class="chip" onclick="dGut()">胃</button>';
+  h+='<button class="chip" onclick="dThroat()">喉咙</button>';
+  h+='<button class="chip" onclick="dShoulder()">肩</button>';
+  h+='<button class="chip" onclick="dNeck()">后颈</button>';
+  h+='</div>';
+  h+='<button class="ghost" onclick="dNone()">都不太紧，挑一处就好</button>';
+  set(h);
+}
+function dChest(){D.body='胸口';go('d2')}
+function dGut(){D.body='胃';go('d2')}
+function dThroat(){D.body='喉咙';go('d2')}
+function dShoulder(){D.body='肩';go('d2')}
+function dNeck(){D.body='后颈';go('d2')}
+function dNone(){D.body='一处没什么特别的地方';go('d2')}
+
+function d2(){
+  var h=dbar(2)+dstage(2);
+  h+='<div class="ctx">在：'+esc(D.body)+'</div>';
+  h+='<p class="q">就那一块。<br>不要它松开。</p>';
+  h+='<p class="lead" style="margin-top:4px">你能欢迎那里的感受吗——就让它这样？</p>';
+  h+=tm(30);
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'d3\')">好</button>';
+  set(h);
+}
+function d3(){
+  var h=dbar(3)+dstage(3);
+  h+='<p class="q">现在，能不能也欢迎——<br>这些感受<b>正在其中出现的那个空间</b>？</p>';
+  h+='<p class="note">感觉不到空间的话，就欢迎你身体里<b>没有感受的那些部分</b>。<br>手背、小腿、耳后，哪儿都行。</p>';
+  h+=tm(30);
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'d4\')">好</button>';
+  set(h);
+}
+function d4(){
+  var h=dbar(4)+dstage(4);
+  h+='<p class="q">再来一轮。</p>';
+  h+='<p class="lead" style="margin-top:4px">感受 → 空间 → 感受 → 空间。<br>来回交替，不用数清楚。</p>';
+  h+=tm(40);
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'d5\')">好</button>';
+  set(h);
+}
+function d5(){
+  var h=dbar(5)+dstage(5);
+  h+='<p class="q">现在把同样的事，<br>放到整个身体上。</p>';
+  h+='<p class="note">整个身体，只是一堆感受。<br>而它们都在同一个空间里。</p>';
+  h+=tm(40);
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'d6\')">好</button>';
+  set(h);
+}
+function d6(){
+  var h=dbar(6)+dstage(6);
+  h+='<p class="q">注意一件事：<br>身体和外面之间，有一条线吗？</p>';
+  h+='<p class="note">不是皮肤的边——是「里面」和「外面」的那道分界。<br>真的找一下。</p>';
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'d7\')">找不到</button>';
+  h+='<button class="row" onclick="go(\'d7\')"><b>好像有</b></button>';
+  set(h);
+}
+function d7(){
+  var h=dbar(7)+dstage(7);
+  h+='<p class="lead">再注意一个很微妙的动作。</p>';
+  h+='<p class="q">想把自己守住。<br>想不被并进去。<br>想保持「我是我」。</p>';
+  h+='<p class="note">这个动作，不需要你解释它。<br>只要看它有没有在动。</p>';
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'d8\')">有</button>';
+  h+='<button class="ghost" onclick="toast(\'没有也没关系，往下走\');go(\'d8\')">不太有</button>';
+  set(h);
+}
+function d8(){
+  var h=dbar(8)+dstage(8);
+  h+='<p class="q">这个「想守住自己」——<br>你能允许它在吗？</p>';
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'d9\')">能</button>';
+  h+='<button class="ghost" onclick="toast(\'可以。往下走\');go(\'d9\')">不能</button>';
+  set(h);
+}
+function d9(){
+  var h=dbar(9)+dstage(9);
+  h+='<p class="q">能放下它吗？</p>';
+  h+='<p class="note">认出来的一瞬间，它常常自己就走。<br>不用使劲。</p>';
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'d10\')">能</button>';
+  h+='<button class="row" onclick="go(\'d10\')"><b>还不能</b></button>';
+  h+='<button class="row" onclick="go(\'d10\')"><b>说不清</b></button>';
+  set(h);
+}
+function d10(){
+  var h=dbar(10)+dstage(10);
+  h+='<p class="lead">也看看反面。</p>';
+  h+='<p class="q">有没有一种——<br>特别想融进去、想属于什么、<br>想说「让我属于这里」？</p>';
+  h+='<p class="note">这是同一枚硬币的另一面。<br>修行的人容易掉在这里：<b>追合一，本身就是「想要合一」</b>。</p>';
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'d11\')">有</button>';
+  h+='<button class="ghost" onclick="go(\'d11\')">没有</button>';
+  set(h);
+}
+function d11(){
+  var h=dbar(11)+dstage(11);
+  h+='<p class="q">这个也能放下吗？</p>';
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'d12\')">能</button>';
+  h+='<button class="ghost" onclick="go(\'d12\')">还不能</button>';
+  set(h);
+}
+function d12(){
+  var h=dbar(12)+dstage(12);
+  h+='<p class="lead">最后一件事。</p>';
+  h+='<p class="q">有没有一个「我」，<br>是独立于这一切的——<br>独立于身体、念头、这个空间？</p>';
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'d13a\')">找到了</button>';
+  h+='<button class="row" onclick="go(\'d13\')"><b>找不到</b></button>';
+  h+='<button class="row" onclick="go(\'d13\')"><b>我不确定</b></button>';
+  set(h);
+}
+function d13a(){
+  var h=dbar(12)+dstage(12);
+  h+='<p class="q">那就指出来。<br>它在哪？</p>';
+  h+='<p class="note">在身体里？在脑子里？在某个位置？<br>不用说出名字，指一下就行。</p>';
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'d13\')">指不出来</button>';
+  h+='<button class="ghost" onclick="go(\'d13\')">好像还能指</button>';
+  set(h);
+}
+function d13(){
+  var h=dbar(13)+'<p class="stage">就到这儿</p>';
+  h+='<p class="lead">不是你变成了什么。</p>';
+  h+='<p class="q">是那个「独立的我」——<br>你从来没找到过。</p>';
+  h+='<p class="note">注意：现在还在的，是什么？</p>';
+  h+='<div class="spacer"></div>';
+  h+='<button class="big" onclick="go(\'d14\')">有一个「在」</button>';
+  h+='<button class="row" onclick="go(\'d14\')"><b>说不上</b></button>';
+  set(h);
+}
+function d14(){
+  var h=dbar(14)+'<p class="stage">完</p>';
+  h+='<p class="q">这必须是够的。<br>就是现在这个。</p>';
+  h+='<p class="lead" style="margin-top:4px">够，就够了。</p>';
+  h+='<p class="note" style="margin-top:16px">如果有哪一句落下来了，记一句。</p>';
+  h+='<textarea id="dn" rows="3" placeholder="例：找不到那个「我」，但「找不到」很清楚"></textarea>';
+  h+='<button class="big" onclick="saveDeep()">记下</button>';
+  h+='<button class="ghost" onclick="home()">不记，结束</button>';
+  set(h);
+}
+function saveDeep(){
+  var v=(document.getElementById('dn').value||'').trim();
+  if(!v){toast('写一句就够');return}
+  var a=dstore();
+  a.push({d:new Date().toLocaleDateString('zh-CN'),body:D.body,note:v});
+  try{localStorage.setItem(DK,JSON.stringify(a))}catch(e){}
+  toast('记下了');home();
 }
 
 home();
